@@ -26,18 +26,9 @@ nodes:
   waypoint_follower:
     app: waypoint_follower
     params: [wait_at_waypoint]
+  pal_bt_navigator:
+    app: pal_bt_navigator
+    params: [navigate_through_waypoints]
   lifecycle_manager_navigation:
     app: lifecycle_manager
     params: [lifecycle_manager_navigation]
-  map_server:
-    app: map_server
-    params: [map_server]
-  map_saver:
-    app: map_saver
-    params: [map_saver]
-  amcl:
-    app: amcl
-    params: [amcl_diff]
-  lifecycle_manager_localization:
-    app: lifecycle_manager
-    params: [lifecycle_manager_localization]
