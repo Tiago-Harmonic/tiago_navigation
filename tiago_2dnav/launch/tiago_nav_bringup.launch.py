@@ -72,7 +72,21 @@ def navigation_bringup(context, *args, **kwargs):
         actions.append(rviz_bringup_launch)
     else:
         pal_nav2_bringup = get_package_share_directory("pal_nav2_bringup")
-        pal_nav2_bringup_launch = IncludeLaunchDescription(
+        
+        pal_laser_filters = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(
+                    get_package_share_directory("pal_laser_filters"),
+                    "launch",
+                    "scan_filter_chain.launch.py",
+                )
+            ),
+            launch_arguments={
+                'use_sim_time': 'True'
+                }.items()
+        )
+
+        nav_bringup_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(
                     pal_nav2_bringup,
@@ -80,11 +94,58 @@ def navigation_bringup(context, *args, **kwargs):
                     "nav_bringup.launch.py",
                 )
             ),
-            condition=UnlessCondition(is_public_sim),
+            launch_arguments={
+                "params_pkg": "tiago_2dnav",
+                "params_file": "tiago_nav.yaml",
+                "robot_name": "tiago",
+                "remappings_file": os.path.join(
+                    get_package_share_directory("tiago_2dnav"),
+                    "params",
+                    "tiago_remappings_sim.yaml"),
+                "rviz": "true"
+
+            }.items(),
+        )
+        
+        slam_bringup_launch = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(
+                    pal_nav2_bringup,
+                    "launch",
+                    "nav_bringup.launch.py",
+                )
+            ),
+            launch_arguments={
+                "params_pkg": "tiago_2dnav",
+                "params_file": "tiago_slam.yaml",
+                "robot_name": "tiago",
+                "rviz": "False"
+            }.items(),
+            condition=IfCondition(LaunchConfiguration('slam')),
         )
 
-        actions.append(pal_nav2_bringup_launch)
-
+        loc_bringup_launch = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(
+                    pal_nav2_bringup,
+                    "launch",
+                    "nav_bringup.launch.py",
+                )
+            ),
+            launch_arguments={
+                "params_pkg": "tiago_2dnav",
+                "params_file": "tiago_loc.yaml",
+                "robot_name": "tiago",
+                "rviz": "False"
+            }.items(),
+            condition=UnlessCondition(LaunchConfiguration('slam')),
+        )
+        
+        actions.append(pal_laser_filters)
+        actions.append(nav_bringup_launch)
+        actions.append(slam_bringup_launch)
+        actions.append(loc_bringup_launch)
+        
     return actions
 
 
@@ -92,7 +153,7 @@ def generate_launch_description():
     """Launch Navigation common application Robot + Simulation."""
     declare_is_public_sim_arg = DeclareLaunchArgument(
         "is_public_sim",
-        default_value="false",
+        default_value="False",
         description="Whether or not you are using a public simulation",
     )
 

@@ -11,6 +11,6 @@ odom_topic : "/mobile_base_controller/odom"
 use_sim_time : True
 robot_radius : 0.275
 footprint: ""
-scan_topic : "/scan_raw"
+scan_topic : "/scan"
 odom_frame : "odom"
 base_footprint_frame : "base_footprint"
