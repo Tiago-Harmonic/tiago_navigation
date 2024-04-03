@@ -72,7 +72,7 @@ def navigation_bringup(context, *args, **kwargs):
         actions.append(rviz_bringup_launch)
     else:
         pal_nav2_bringup = get_package_share_directory("pal_nav2_bringup")
-        
+
         laser_bringup_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(
@@ -109,7 +109,7 @@ def navigation_bringup(context, *args, **kwargs):
 
             }.items(),
         )
-        
+
         slam_bringup_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(
@@ -143,12 +143,12 @@ def navigation_bringup(context, *args, **kwargs):
             }.items(),
             condition=UnlessCondition(LaunchConfiguration('slam')),
         )
-        
+
         actions.append(laser_bringup_launch)
         actions.append(nav_bringup_launch)
         actions.append(slam_bringup_launch)
         actions.append(loc_bringup_launch)
-        
+
     return actions
 
 
