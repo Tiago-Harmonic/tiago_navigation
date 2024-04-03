@@ -73,17 +73,20 @@ def navigation_bringup(context, *args, **kwargs):
     else:
         pal_nav2_bringup = get_package_share_directory("pal_nav2_bringup")
         
-        pal_laser_filters = IncludeLaunchDescription(
+        laser_bringup_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(
-                    get_package_share_directory("pal_laser_filters"),
+                    pal_nav2_bringup,
                     "launch",
-                    "scan_filter_chain.launch.py",
+                    "nav_bringup.launch.py",
                 )
             ),
             launch_arguments={
-                'use_sim_time': 'True'
-                }.items()
+                "params_pkg": "tiago_laser_sensors",
+                "params_file": "laser_pipeline_sim_pmb2.yaml",
+                "robot_name": "tiago",
+                "rviz": "False"
+            }.items(),
         )
 
         nav_bringup_launch = IncludeLaunchDescription(
@@ -141,7 +144,7 @@ def navigation_bringup(context, *args, **kwargs):
             condition=UnlessCondition(LaunchConfiguration('slam')),
         )
         
-        actions.append(pal_laser_filters)
+        actions.append(laser_bringup_launch)
         actions.append(nav_bringup_launch)
         actions.append(slam_bringup_launch)
         actions.append(loc_bringup_launch)

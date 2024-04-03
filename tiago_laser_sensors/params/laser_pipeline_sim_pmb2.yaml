@@ -11,15 +11,12 @@
 #       params: [<LIST-YAML-PARAM-FILES>]
 
 nodes: 
-#  sick_571_front:
-#    app: sick_driver
-#    params: [sick_571_front]
   pal_laser_filters:
     app: pal_laser_filters
-    params: [default]
+    params: [default_sim]
   dlo_ros:
     app: dlo_ros
-    params: [default]
+    params: [default_sim]
   lifecycle_manager_laser:
     app: lifecycle_manager
-    params: [lifecycle_manager_laser_pmb2]
+    params: [lifecycle_manager_laser_sim_pmb2]
