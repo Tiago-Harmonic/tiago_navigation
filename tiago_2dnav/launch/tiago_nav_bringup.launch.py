@@ -176,7 +176,7 @@ def generate_launch_description():
         "world_name", default_value="",
         description="Specify world name, we'll convert to full path"
     )
-    
+
     declare_slam_arg = DeclareLaunchArgument(
         "slam",
         default_value="false",
