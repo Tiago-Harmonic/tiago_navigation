@@ -13,10 +13,10 @@
 nodes: 
   pal_laser_filters:
     app: pal_laser_filters
-    params: [default_sim]
+    params: [default]
   dlo_ros:
     app: dlo_ros
-    params: [default_sim]
+    params: [default]
   lifecycle_manager_laser:
     app: lifecycle_manager
     params: [lifecycle_manager_laser_sim_pmb2]

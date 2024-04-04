@@ -85,6 +85,10 @@ def navigation_bringup(context, *args, **kwargs):
                 "params_pkg": "tiago_laser_sensors",
                 "params_file": "laser_pipeline_sim_pmb2.yaml",
                 "robot_name": "tiago",
+                "remappings_file": os.path.join(
+                    get_package_share_directory("tiago_2dnav"),
+                    "params",
+                    "tiago_remappings_sim.yaml"),
                 "rviz": "False"
             }.items(),
         )
@@ -122,6 +126,10 @@ def navigation_bringup(context, *args, **kwargs):
                 "params_pkg": "tiago_2dnav",
                 "params_file": "tiago_slam.yaml",
                 "robot_name": "tiago",
+                "remappings_file": os.path.join(
+                    get_package_share_directory("tiago_2dnav"),
+                    "params",
+                    "tiago_remappings_sim.yaml"),
                 "rviz": "False"
             }.items(),
             condition=IfCondition(LaunchConfiguration('slam')),
@@ -139,6 +147,10 @@ def navigation_bringup(context, *args, **kwargs):
                 "params_pkg": "tiago_2dnav",
                 "params_file": "tiago_loc.yaml",
                 "robot_name": "tiago",
+                "remappings_file": os.path.join(
+                    get_package_share_directory("tiago_2dnav"),
+                    "params",
+                    "tiago_remappings_sim.yaml"),
                 "rviz": "False"
             }.items(),
             condition=UnlessCondition(LaunchConfiguration('slam')),
@@ -164,6 +176,12 @@ def generate_launch_description():
         "world_name", default_value="",
         description="Specify world name, we'll convert to full path"
     )
+    
+    declare_slam_arg = DeclareLaunchArgument(
+        "slam",
+        default_value="false",
+        description="Whether or not you are using SLAM",
+    )
 
     navigation_bringup_launch = OpaqueFunction(function=navigation_bringup)
 
@@ -171,6 +189,7 @@ def generate_launch_description():
     ld = LaunchDescription()
     ld.add_action(declare_is_public_sim_arg)
     ld.add_action(declare_world_name_arg)
+    ld.add_action(declare_slam_arg)
     ld.add_action(navigation_bringup_launch)
 
     return ld
