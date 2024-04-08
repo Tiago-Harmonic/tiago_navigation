@@ -110,7 +110,6 @@ def navigation_bringup(context, *args, **kwargs):
                     "params",
                     "tiago_remappings_sim.yaml"),
                 "rviz": "true"
-
             }.items(),
         )
 
@@ -179,7 +178,7 @@ def generate_launch_description():
 
     declare_slam_arg = DeclareLaunchArgument(
         "slam",
-        default_value="false",
+        default_value="False",
         description="Whether or not you are using SLAM",
     )
 
