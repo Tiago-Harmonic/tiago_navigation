@@ -23,4 +23,4 @@ containers:
       params: [default]
     lifecycle_manager_laser:
       app: lifecycle_manager
-      params: [lifecycle_manager_laser_pmb2]
+      params: [lifecycle_manager_laser]
