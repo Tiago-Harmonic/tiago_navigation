@@ -12,5 +12,6 @@ use_sim_time : False
 robot_radius : 0.275
 footprint: ""
 scan_topic : "/scan"
+scan_raw_topic : "/scan_raw"
 odom_frame : "odom"
 base_footprint_frame : "base_footprint"

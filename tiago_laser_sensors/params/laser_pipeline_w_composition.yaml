@@ -15,6 +15,11 @@ containers:
     sick_571:
       app: sick_driver
       params: [sick_571]
+      variables: 
+      frame_id: "base_laser_link"
+      device_number: 0
+      min_ang: -1.65806 # !degrees -95 (not supported)
+      max_ang: 1.65806 # !degrees  95 (not supported)
     pal_laser_filters:
       app: pal_laser_filters
       params: [default]
