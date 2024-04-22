@@ -19,4 +19,6 @@ nodes:
     params: [default]
   lifecycle_manager_laser:
     app: lifecycle_manager
-    params: [lifecycle_manager_laser_sim]
+    params: [default]
+    variables:
+      node_names: ["pal_laser_filters", "dlo_ros"]

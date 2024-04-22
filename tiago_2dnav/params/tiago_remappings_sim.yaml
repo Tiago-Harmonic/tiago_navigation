@@ -11,9 +11,7 @@ odom_topic : "/mobile_base_controller/odom"
 # https://github.com/ros-planning/navigation2/blob/main/nav2_bringup/launch/navigation_launch.py#L111
 robot_radius : 0.275
 footprint: ""
+
 laser_frame: "base_laser_link"
 scan_topic : "/scan"
 scan_raw_topic : "/scan_raw"
-laser_device_id: 0
-laser_min_angle: -1.65806 # !degrees -95 (not supported)
-laser_max_angle: 1.65806 # !degrees  95 (not supported)
