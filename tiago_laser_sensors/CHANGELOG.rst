@@ -2,6 +2,22 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/ros2-pipelines' into 'humble-devel'
+  Feat/ros2 pipelines
+  See merge request robots/tiago_navigation!98
+* using variables lifecycle manager
+* using new variables names
+* using variables
+* using variables for laser pipelines
+* update public sim launch and renamed params
+* modified params laser pipeline
+* navigation pipelines
+* navigation pipeline
+* added modules and pipelines
+* Contributors: andreacapodacqua, antoniobrandi
+
 4.0.12 (2024-02-13)
 -------------------
 

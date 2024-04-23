@@ -13,6 +13,25 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Merge branch 'feat/ros2-pipelines' into 'humble-devel'
+  Feat/ros2 pipelines
+  See merge request robots/tiago_navigation!98
+* using variables lifecycle manager
+* using new variables names
+* using variables
+* restored default controller
+* update public sim launch and renamed params
+* cosmetic
+* linters
+* modified params laser pipeline
+* linters
+* navigation pipelines
+* navigation pipeline
+* added modules and pipelines
+* Contributors: andreacapodacqua, antoniobrandi
+
 4.0.12 (2024-02-13)
 -------------------
 * Merge branch 'abr/fix/world-name' into 'humble-devel'
