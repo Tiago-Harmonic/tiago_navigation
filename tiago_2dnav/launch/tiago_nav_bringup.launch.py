@@ -34,7 +34,7 @@ def navigation_bringup(context, *args, **kwargs):
 
     pal_nav2_bringup = get_package_share_directory("pal_nav2_bringup")
     tiago_2dnav = get_package_share_directory("tiago_2dnav")
-    pmb2_maps = get_package_share_directory("pmb2_maps")
+    pal_maps = get_package_share_directory("pal_maps")
     nav2_bringup = get_package_share_directory("nav2_bringup")
 
     if is_public_sim == "True" or is_public_sim == "true":
@@ -46,12 +46,6 @@ def navigation_bringup(context, *args, **kwargs):
             launch_arguments={
                 "params_file": os.path.join(
                     tiago_2dnav, "params", "tiago_nav_public_sim.yaml"
-                ),
-                "map": os.path.join(
-                    pmb2_maps,
-                    "configurations",
-                    world_name,
-                    "map.yaml",
                 ),
                 "use_sim_time": "True",
             }.items(),
@@ -79,7 +73,7 @@ def navigation_bringup(context, *args, **kwargs):
                     tiago_2dnav, "params", "tiago_nav_public_sim.yaml"
                 ),
                 "map": os.path.join(
-                    pmb2_maps,
+                    pal_maps,
                     "configurations",
                     world_name,
                     "map.yaml",
@@ -211,12 +205,18 @@ def generate_launch_description():
         description="Whether or not you are using SLAM",
     )
 
+    declare_world_name_arg = DeclareLaunchArgument(
+        "world_name", default_value="",
+        description="Specify world name, we'll convert to full path"
+    )
+
     navigation_bringup_launch = OpaqueFunction(function=navigation_bringup)
 
     # Create the launch description and populate
     ld = LaunchDescription()
     ld.add_action(declare_is_public_sim_arg)
     ld.add_action(declare_slam_arg)
+    ld.add_action(declare_world_name_arg)
     ld.add_action(navigation_bringup_launch)
 
     return ld
