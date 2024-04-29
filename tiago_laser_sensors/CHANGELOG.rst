@@ -2,6 +2,9 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 4.0.13 (2024-04-23)
 -------------------
 * Merge branch 'feat/ros2-pipelines' into 'humble-devel'
