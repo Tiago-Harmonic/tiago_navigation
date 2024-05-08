@@ -2,6 +2,14 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/aca/missing-deps' into 'humble-devel'
+  fix deps
+  See merge request robots/tiago_navigation!100
+* fix deps
+* Contributors: andreacapodacqua, antoniobrandi
+
 4.0.14 (2024-04-29)
 -------------------
 
