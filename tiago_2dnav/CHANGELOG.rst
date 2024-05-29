@@ -13,6 +13,14 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Merge branch 'fix/aca/public-sim' into 'humble-devel'
+  fix public sim
+  See merge request robots/tiago_navigation!103
+* fix public sim
+* Contributors: Noel Jimenez, andreacapodacqua
+
 4.0.15 (2024-05-08)
 -------------------
 
