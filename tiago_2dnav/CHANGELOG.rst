@@ -13,6 +13,11 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Fix pal_maps path
+* Contributors: Noel Jimenez
+
 4.0.16 (2024-05-29)
 -------------------
 * Merge branch 'fix/aca/public-sim' into 'humble-devel'
