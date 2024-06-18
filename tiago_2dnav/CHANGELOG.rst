@@ -13,8 +13,8 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
-Forthcoming
------------
+4.0.17 (2024-06-18)
+-------------------
 * Fix pal_maps path
 * Contributors: Noel Jimenez
 
