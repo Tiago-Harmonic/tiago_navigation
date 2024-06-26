@@ -13,6 +13,15 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Merge branch 'feature/support-different-base-types' into 'humble-devel'
+  feat: support different base types
+  See merge request robots/tiago_navigation!102
+* feat: support base_type on real robot
+* feat: support base_type in simulation
+* Contributors: antoniobrandi, josegarcia
+
 4.0.18 (2024-06-25)
 -------------------
 * Merge branch 'abr/feat/rviz-nav' into 'humble-devel'
