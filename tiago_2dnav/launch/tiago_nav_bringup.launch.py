@@ -32,21 +32,25 @@ def navigation_bringup(context, *args, **kwargs):
     actions = []
     is_public_sim = LaunchConfiguration("is_public_sim").perform(context)
     world_name = LaunchConfiguration("world_name").perform(context)
+    base_type = LaunchConfiguration("base_type").perform(context)
+
+    if base_type != "omni_base":
+        base_type = "diff_base"
 
     tiago_2dnav = get_package_share_directory("tiago_2dnav")
     pal_maps = get_package_share_directory("pal_maps")
     nav2_bringup = get_package_share_directory("nav2_bringup")
 
     if is_public_sim == "True" or is_public_sim == "true":
+        public_param_file = os.path.join(
+            tiago_2dnav, "params", "tiago_"+base_type+"_nav_public_sim.yaml")
 
         nav2_bringup_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(nav2_bringup, "launch", "navigation_launch.py")
             ),
             launch_arguments={
-                "params_file": os.path.join(
-                    tiago_2dnav, "params", "tiago_nav_public_sim.yaml"
-                ),
+                "params_file": public_param_file,
                 "use_sim_time": "True",
             }.items(),
         )
@@ -56,9 +60,7 @@ def navigation_bringup(context, *args, **kwargs):
                 os.path.join(nav2_bringup, "launch", "slam_launch.py")
             ),
             launch_arguments={
-                "params_file": os.path.join(
-                    tiago_2dnav, "params", "tiago_nav_public_sim.yaml"
-                ),
+                "params_file": public_param_file,
                 "use_sim_time": "True",
             }.items(),
             condition=IfCondition(LaunchConfiguration("slam")),
@@ -69,9 +71,7 @@ def navigation_bringup(context, *args, **kwargs):
                 os.path.join(nav2_bringup, "launch", "localization_launch.py")
             ),
             launch_arguments={
-                "params_file": os.path.join(
-                    tiago_2dnav, "params", "tiago_nav_public_sim.yaml"
-                ),
+                "params_file": public_param_file,
                 "map": os.path.join(
                     pal_maps,
                     "maps",
@@ -100,6 +100,8 @@ def navigation_bringup(context, *args, **kwargs):
         actions.append(slam_bringup_launch)
         actions.append(rviz_bringup_launch)
     else:
+        remappings_file = os.path.join(
+            tiago_2dnav, "params", "tiago_"+base_type+"_remappings_sim.yaml")
 
         pal_nav2_bringup = get_package_share_directory("pal_nav2_bringup")
         laser_bringup_launch = IncludeLaunchDescription(
@@ -112,12 +114,9 @@ def navigation_bringup(context, *args, **kwargs):
             ),
             launch_arguments={
                 "params_pkg": "tiago_laser_sensors",
-                "params_file": "laser_pipeline_sim.yaml",
+                "params_file": base_type + "_laser_pipeline_sim.yaml",
                 "robot_name": "tiago",
-                "remappings_file": os.path.join(
-                    tiago_2dnav,
-                    "params",
-                    "tiago_remappings_sim.yaml"),
+                "remappings_file": remappings_file,
             }.items(),
         )
 
@@ -131,12 +130,9 @@ def navigation_bringup(context, *args, **kwargs):
             ),
             launch_arguments={
                 "params_pkg": "tiago_2dnav",
-                "params_file": "tiago_nav.yaml",
+                "params_file": "tiago_" + base_type + "_nav.yaml",
                 "robot_name": "tiago",
-                "remappings_file": os.path.join(
-                    tiago_2dnav,
-                    "params",
-                    "tiago_remappings_sim.yaml"),
+                "remappings_file": remappings_file,
             }.items(),
         )
 
@@ -152,10 +148,7 @@ def navigation_bringup(context, *args, **kwargs):
                 "params_pkg": "tiago_2dnav",
                 "params_file": "tiago_slam.yaml",
                 "robot_name": "tiago",
-                "remappings_file": os.path.join(
-                    tiago_2dnav,
-                    "params",
-                    "tiago_remappings_sim.yaml"),
+                "remappings_file": remappings_file,
             }.items(),
             condition=IfCondition(LaunchConfiguration("slam")),
         )
@@ -170,12 +163,9 @@ def navigation_bringup(context, *args, **kwargs):
             ),
             launch_arguments={
                 "params_pkg": "tiago_2dnav",
-                "params_file": "tiago_loc.yaml",
+                "params_file": "tiago_" + base_type + "_loc.yaml",
                 "robot_name": "tiago",
-                "remappings_file": os.path.join(
-                    tiago_2dnav,
-                    "params",
-                    "tiago_remappings_sim.yaml"),
+                "remappings_file": remappings_file,
             }.items(),
             condition=UnlessCondition(LaunchConfiguration("slam")),
         )
@@ -220,6 +210,12 @@ def generate_launch_description():
         description="Specify world name, we'll convert to full path"
     )
 
+    declare_base_type_arg = DeclareLaunchArgument(
+        "base_type",
+        default_value="diff_base",
+        description="Type of base for the robot",
+    )
+
     navigation_bringup_launch = OpaqueFunction(function=navigation_bringup)
 
     # Create the launch description and populate
@@ -227,6 +223,7 @@ def generate_launch_description():
     ld.add_action(declare_is_public_sim_arg)
     ld.add_action(declare_slam_arg)
     ld.add_action(declare_world_name_arg)
+    ld.add_action(declare_base_type_arg)
     ld.add_action(navigation_bringup_launch)
 
     return ld
