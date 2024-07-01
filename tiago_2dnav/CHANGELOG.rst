@@ -13,8 +13,8 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
-Forthcoming
------------
+4.1.1 (2024-07-01)
+------------------
 * Merge branch 'abr/feat/using-filters' into 'humble-devel'
   using costmap with filters
   See merge request robots/tiago_navigation!108
