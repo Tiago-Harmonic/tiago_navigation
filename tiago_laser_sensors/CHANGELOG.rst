@@ -2,6 +2,9 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 4.1.0 (2024-06-26)
 ------------------
 * Merge branch 'feature/support-different-base-types' into 'humble-devel'
