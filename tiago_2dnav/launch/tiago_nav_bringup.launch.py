@@ -113,20 +113,20 @@ def private_nav_function(context, *args, **kwargs):
     base_type = read_launch_argument("base_type", context)
     actions = []
     tiago_2dnav = get_package_share_directory("tiago_2dnav")
-    base = "omni_base"
+    base_navigation_type = "omni_base"
 
     if base_type != "omni_base":
-        base = "diff_base"
+        base_navigation_type = "diff_base"
 
     remappings_file = os.path.join(
-        tiago_2dnav, "params", "tiago_" + base + "_remappings_sim.yaml")
+        tiago_2dnav, "params", "tiago_" + base_navigation_type + "_remappings_sim.yaml")
 
     nav_bringup_launch = include_scoped_launch_py_description(
         pkg_name="pal_nav2_bringup",
         paths=['launch', "nav_bringup.launch.py"],
         launch_arguments={
             "params_pkg": "tiago_2dnav",
-            "params_file": "tiago_" + base + "_nav.yaml",
+            "params_file": "tiago_" + base_navigation_type + "_nav.yaml",
             "robot_name": "tiago",
             "remappings_file": remappings_file,
         })
@@ -147,7 +147,7 @@ def private_nav_function(context, *args, **kwargs):
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
             "params_pkg": "tiago_2dnav",
-            "params_file": "tiago_" + base + "_loc.yaml",
+            "params_file": "tiago_" + base_navigation_type + "_loc.yaml",
             "robot_name": "tiago",
             "remappings_file": remappings_file,
         },
@@ -159,7 +159,7 @@ def private_nav_function(context, *args, **kwargs):
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
             "params_pkg": "tiago_laser_sensors",
-            "params_file": base + "_laser_pipeline_sim.yaml",
+            "params_file": base_navigation_type + "_laser_pipeline_sim.yaml",
             "robot_name": "tiago",
             "remappings_file": remappings_file,
         }
