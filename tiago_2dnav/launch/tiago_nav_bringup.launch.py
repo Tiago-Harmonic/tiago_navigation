@@ -35,7 +35,7 @@ def navigation_bringup(context, *args, **kwargs):
     base_type = LaunchConfiguration("base_type").perform(context)
 
     if base_type != "omni_base":
-        base_type = "diff_base"
+        base_type = "pmb2"
 
     tiago_2dnav = get_package_share_directory("tiago_2dnav")
     pal_maps = get_package_share_directory("pal_maps")
