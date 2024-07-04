@@ -209,7 +209,7 @@ def generate_launch_description():
 
     declare_base_type_arg = DeclareLaunchArgument(
         "base_type",
-        default_value="diff_base",
+        default_value="pmb2",
         description="Type of base for the robot",
     )
 
