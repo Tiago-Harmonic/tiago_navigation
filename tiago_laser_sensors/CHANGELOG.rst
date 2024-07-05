@@ -2,8 +2,8 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+4.1.2 (2024-07-05)
+------------------
 * Merge branch 'fix/changed-base-type-name' into 'humble-devel'
   changed diff_drive to pmb2
   See merge request robots/tiago_navigation!110

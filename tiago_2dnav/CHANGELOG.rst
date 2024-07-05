@@ -13,8 +13,8 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
-Forthcoming
------------
+4.1.2 (2024-07-05)
+------------------
 * Merge branch 'fix/changed-base-type-name' into 'humble-devel'
   changed diff_drive to pmb2
   See merge request robots/tiago_navigation!110
