@@ -113,20 +113,16 @@ def private_nav_function(context, *args, **kwargs):
     base_type = read_launch_argument("base_type", context)
     actions = []
     tiago_2dnav = get_package_share_directory("tiago_2dnav")
-    base_navigation_type = "omni_base"
-
-    if base_type != "omni_base":
-        base_navigation_type = "diff_base"
 
     remappings_file = os.path.join(
-        tiago_2dnav, "params", "tiago_" + base_navigation_type + "_remappings_sim.yaml")
+        tiago_2dnav, "params", "tiago_" + base_type + "_remappings_sim.yaml")
 
     nav_bringup_launch = include_scoped_launch_py_description(
         pkg_name="pal_nav2_bringup",
         paths=['launch', "nav_bringup.launch.py"],
         launch_arguments={
             "params_pkg": "tiago_2dnav",
-            "params_file": "tiago_" + base_navigation_type + "_nav.yaml",
+            "params_file": "tiago_" + base_type + "_nav.yaml",
             "robot_name": "tiago",
             "remappings_file": remappings_file,
         })
@@ -147,7 +143,7 @@ def private_nav_function(context, *args, **kwargs):
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
             "params_pkg": "tiago_2dnav",
-            "params_file": "tiago_" + base_navigation_type + "_loc.yaml",
+            "params_file": "tiago_" + base_type + "_loc.yaml",
             "robot_name": "tiago",
             "remappings_file": remappings_file,
         },
@@ -159,7 +155,7 @@ def private_nav_function(context, *args, **kwargs):
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
             "params_pkg": "tiago_laser_sensors",
-            "params_file": base_navigation_type + "_laser_pipeline_sim.yaml",
+            "params_file": base_type + "_laser_pipeline_sim.yaml",
             "robot_name": "tiago",
             "remappings_file": remappings_file,
         }
@@ -187,11 +183,17 @@ def private_nav_function(context, *args, **kwargs):
 
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
-    if launch_args.is_public_sim == "True":
-        launch_description.add_action(
-            OpaqueFunction(function=public_nav_function)
+
+    launch_description.add_action(
+        OpaqueFunction(
+            function=public_nav_function,
+            condition=IfCondition(LaunchConfiguration("is_public_sim"))
         )
-    else:
-        launch_description.add_action(
-            OpaqueFunction(function=private_nav_function)
+    )
+
+    launch_description.add_action(
+        OpaqueFunction(
+            function=private_nav_function,
+            condition=UnlessCondition(LaunchConfiguration("is_public_sim"))
         )
+    )
