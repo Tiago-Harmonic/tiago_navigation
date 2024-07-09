@@ -13,6 +13,11 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Add warning for pal_module_cmake not found
+* Contributors: Noel Jimenez
+
 4.1.2 (2024-07-05)
 ------------------
 * Merge branch 'fix/changed-base-type-name' into 'humble-devel'
