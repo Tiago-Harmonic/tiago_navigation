@@ -55,15 +55,16 @@ def generate_launch_description():
 
 
 def public_nav_function(context, *args, **kwargs):
+    base_type = read_launch_argument("base_type", context)
     world_name = read_launch_argument("world_name", context)
     actions = []
     tiago_2dnav = get_package_share_directory("tiago_2dnav")
+    param_file = os.path.join(tiago_2dnav, "params", "tiago_" + base_type + "_nav_public_sim.yaml")
 
-    param_file = os.path.join(tiago_2dnav, "config", "rviz", "navigation.rviz")
     pal_maps = get_package_share_directory("pal_maps")
 
-    map = os.path.join(pal_maps, "maps", world_name, "map.yaml")
-    rviz_config_file = os.path.join(tiago_2dnav, "maps", world_name, "map.yaml")
+    map_path = os.path.join(pal_maps, "maps", world_name, "map.yaml")
+    rviz_config_file = os.path.join(tiago_2dnav, "config", "rviz", "navigation.rviz")
 
     nav_bringup_launch = include_scoped_launch_py_description(
         pkg_name="nav2_bringup",
@@ -88,7 +89,7 @@ def public_nav_function(context, *args, **kwargs):
         paths=["launch", "localization_launch.py"],
         launch_arguments={
             "params_file": param_file,
-            "map": map,
+            "map": map_path,
             "use_sim_time": "True"
         },
         condition=UnlessCondition(LaunchConfiguration("slam")),
