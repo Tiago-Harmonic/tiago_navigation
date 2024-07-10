@@ -13,8 +13,8 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
-Forthcoming
------------
+4.1.4 (2024-07-10)
+------------------
 * Merge branch 'fix/aca/missing-dep' into 'humble-devel'
   added missing dep
   See merge request robots/tiago_navigation!112
