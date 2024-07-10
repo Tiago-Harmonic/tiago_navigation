@@ -100,7 +100,6 @@ def public_nav_function(context, *args, **kwargs):
         launch_arguments={
             "rviz": rviz_config_file
         },
-        condition=IfCondition(LaunchConfiguration("is_public_sim"))
     )
 
     actions.append(nav_bringup_launch)
