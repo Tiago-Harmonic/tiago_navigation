@@ -77,11 +77,13 @@ def public_nav_function(context, *args, **kwargs):
 
     slam_bringup_launch = include_scoped_launch_py_description(
         pkg_name="nav2_bringup",
-        paths=["launch", "navigation_launch.py"],
+        paths=["launch", "slam_launch.py"],
         launch_arguments={
             "params_file": param_file,
             "use_sim_time": "True"
-        }
+        },
+        condition=IfCondition(LaunchConfiguration("slam")),
+
     )
 
     loc_bringup_launch = include_scoped_launch_py_description(
