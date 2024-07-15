@@ -2,6 +2,16 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/aca/pipeline-substitution' into 'humble-devel'
+  using variables for pipeline
+  See merge request robots/tiago_navigation!105
+* naming convention
+* using variables laser pipeline tiago omni
+* using variables for pipeline
+* Contributors: andreacapodacqua
+
 4.1.4 (2024-07-10)
 ------------------
 

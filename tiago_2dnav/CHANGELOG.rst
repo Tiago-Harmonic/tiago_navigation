@@ -13,6 +13,16 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Merge branch 'feat/aca/pipeline-substitution' into 'humble-devel'
+  using variables for pipeline
+  See merge request robots/tiago_navigation!105
+* reorganized remappings file
+* naming convention
+* added device number laser
+* Contributors: andreacapodacqua
+
 4.1.4 (2024-07-10)
 ------------------
 * Merge branch 'fix/aca/missing-dep' into 'humble-devel'
