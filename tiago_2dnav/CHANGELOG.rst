@@ -13,6 +13,20 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Merge branch 'air/unify_pkgs' into 'humble-devel'
+  restructure launch file
+  See merge request robots/tiago_navigation!109
+* add slam condition in slam launch include & fix error file path for slam
+* remove condition in public rviz
+* fix config files paths
+* using base_type and changing pub/private condition
+* change base name into base_navigation_type
+* add laser dependency
+* restructure launch file
+* Contributors: Aina, antoniobrandi
+
 4.1.5 (2024-07-15)
 ------------------
 * Merge branch 'feat/aca/pipeline-substitution' into 'humble-devel'

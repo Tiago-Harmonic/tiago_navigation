@@ -2,6 +2,9 @@
 Changelog for package tiago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 4.1.5 (2024-07-15)
 ------------------
 * Merge branch 'feat/aca/pipeline-substitution' into 'humble-devel'
