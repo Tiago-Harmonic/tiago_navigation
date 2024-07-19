@@ -13,6 +13,14 @@ Changelog for package pmb2_2dnav
 2.0.7 (2020-07-02)
 ------------------
 
+Forthcoming
+-----------
+* Merge branch 'fix/aca/laser-frames' into 'humble-devel'
+  fix laser frames
+  See merge request robots/tiago_navigation!113
+* fix laser frames
+* Contributors: andreacapodacqua
+
 4.1.6 (2024-07-17)
 ------------------
 * Merge branch 'air/unify_pkgs' into 'humble-devel'
