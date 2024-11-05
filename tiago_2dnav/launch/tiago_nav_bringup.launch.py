@@ -29,7 +29,7 @@ from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import read_launch_argument
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node
+from launch_ros.actions import Node, SetRemap
 
 
 @dataclass(frozen=True)
@@ -104,10 +104,29 @@ def public_nav_function(context, *args, **kwargs):
         },
     )
 
+    twist_stamper = Node(
+        package="twist_stamper",
+        executable="twist_stamper",
+        name="twist_stamper_nav",
+        output="screen",
+        parameters = [
+            {
+                'frame_id': 'base_footprint',
+                'use_sim_time': True,
+            }
+        ],
+        remappings=[
+            ('cmd_vel_in', '/cmd_vel_nav'),
+            ('cmd_vel_out', '/mobile_base_controller/cmd_vel')
+        ],
+    )
+
     actions.append(nav_bringup_launch)
     actions.append(slam_bringup_launch)
     actions.append(loc_bringup_launch)
     actions.append(rviz_bringup_launch)
+    actions.append(twist_stamper)
+
     return actions
 
 
